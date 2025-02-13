@@ -1,0 +1,42 @@
+--Find Lua scripts online and paste them here!
+print("Hello world!")if game.PlaceId == 5194554335 then
+	getgenv().SecureMode = true
+	local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/nixckk/UI-Library/refs/heads/main/Rayfield'))()
+	local Window = Rayfield:CreateWindow({
+		Name = "Animation Crossed Arms By EKYBZEPPELI and Rayna and Uni",
+		LoadingTitle = "... LOADING ...",
+		LoadingSubtitle = "Made in heaven",
+		DisableRayfieldPrompts = true,
+		KeySystem = true, -- Set this to true to use our key system
+		KeySettings = {
+			Title = "Key System",
+			Subtitle = "for blackidhere",
+			Note = "Enter the key to get access.", -- Use this to tell the user how to get a key
+			FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+			SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+			GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+			Key = {"PRIVETRUSSIAILOVEYOU"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+		}
+	})
+	local Tab = Window:CreateTab("Animations")
+	local Section = Tab:CreateSection("")
+	local Paragraph = Tab:CreateParagraph({Title = "INFORMATION:", Content = "This will only modify the animate script in your character, changing your animation(s)."})
+	local Section = Tab:CreateSection("The Vampire Legacies 1")
+	local Button = Tab:CreateButton({
+		Name = "CROSSED ARMS",
+		Callback = function()
+			local Players = game:GetService("Players")
+			local Player = Players.LocalPlayer
+			local Character = Player.Character
+			local Humanoid = Character:WaitForChild("Humanoid")
+			local ActiveAnimationTracks = Humanoid:GetPlayingAnimationTracks()
+			for _, v in pairs(ActiveAnimationTracks) do
+				v:Stop()
+			end
+			wait(0.001)
+			Character:WaitForChild("Animate"):WaitForChild("idle"):WaitForChild("Animation1").AnimationId = "rbxassetid://18321595536"
+			Character:WaitForChild("Animate"):WaitForChild("idle"):WaitForChild("Animation2").AnimationId = "rbxassetid://18321595536"
+			Character:WaitForChild("Animate"):WaitForChild("run"):WaitForChild("RunAnim").AnimationId = "rbxassetid://18321582269"
+		end,
+	})
+end
