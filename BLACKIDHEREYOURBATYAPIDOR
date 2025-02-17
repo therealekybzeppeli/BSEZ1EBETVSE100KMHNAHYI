@@ -1,0 +1,172 @@
+--Find Lua scripts online and paste them here!
+print("Hello world!")if game.PlaceId == 5194554335 then
+	getgenv().SecureMode = true
+	local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/nixckk/UI-Library/refs/heads/main/Rayfield'))()
+	local Window = Rayfield:CreateWindow({
+		Name = "Animation Crossed Arms By EKYBZEPPELI and Rayna and Uni",
+		LoadingTitle = "... LOADING ...",
+		LoadingSubtitle = "Made in heaven",
+		DisableRayfieldPrompts = true,
+		KeySystem = true, -- Set this to true to use our key system
+		KeySettings = {
+			Title = "Key System",
+			Subtitle = "for blackidhere",
+			Note = "Enter the key to get access.", -- Use this to tell the user how to get a key
+			FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+			SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+			GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+			Key = {"PRIVETRUSSIAILOVEYOU"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+		}
+	})
+	local Tab = Window:CreateTab("Animations")
+	local Section = Tab:CreateSection("")
+	local Paragraph = Tab:CreateParagraph({Title = "INFORMATION:", Content = "This will only modify the animate script in your character, changing your animation(s)."})
+	local Section = Tab:CreateSection("The Vampire Legacies 1")
+	local Button = Tab:CreateButton({
+		Name = "CROSSED ARMS",
+		Callback = function()
+			local Players = game:GetService("Players")
+			local Player = Players.LocalPlayer
+			local Character = Player.Character
+			local Humanoid = Character:WaitForChild("Humanoid")
+			local ActiveAnimationTracks = Humanoid:GetPlayingAnimationTracks()
+			for _, v in pairs(ActiveAnimationTracks) do
+				v:Stop()
+			end
+			wait(0.001)
+			Character:WaitForChild("Animate"):WaitForChild("idle"):WaitForChild("Animation1").AnimationId = "rbxassetid://18321595536"
+			Character:WaitForChild("Animate"):WaitForChild("idle"):WaitForChild("Animation2").AnimationId = "rbxassetid://18321595536"
+			Character:WaitForChild("Animate"):WaitForChild("run"):WaitForChild("RunAnim").AnimationId = "rbxassetid://18321582269"
+		end,
+	})
+    local function IsCharTaken(CharName)
+		local CharacterTable = {}
+		local ReplicatedStorage = game:GetService("ReplicatedStorage")
+		for i, v in pairs(ReplicatedStorage:WaitForChild("RemoteEvents"):WaitForChild("GetCharacterList"):InvokeServer()) do
+			if v == "None" then
+				CharacterTable[i] = false
+			else
+				CharacterTable[i] = true
+			end
+		end
+		if CharacterTable[CharName] then
+			return true
+		else
+			return false
+		end
+	end
+
+	local function SelfNotification(NotificationMessage)
+		local ReplicatedStorage = game:GetService("ReplicatedStorage")
+		local Players = game:GetService("Players")
+		local Player = Players.LocalPlayer
+		ReplicatedStorage:WaitForChild("Events"):WaitForChild("CharacterSystems"):WaitForChild("SelfNotification"):FireServer(unpack({
+			[1] = {
+				["Message"] = NotificationMessage,
+				["Player"] = Player,
+			},
+		}))
+	end
+
+	local CurrentOutfit
+	coroutine.wrap(function()
+		while true do
+			local Players = game:GetService("Players")
+			local Player = Players.LocalPlayer
+			if not Player:FindFirstChild("CharacterConfiguration") then
+				repeat task.wait() until Player:FindFirstChild("CharacterConfiguration")
+				CurrentOutfit = Player:FindFirstChild("CharacterConfiguration").OutfitName.Value
+			else
+				if not CurrentOutfit or CurrentOutfit == "" then
+					CurrentOutfit = Player:FindFirstChild("CharacterConfiguration").OutfitName.Value
+				end
+			end
+			task.wait()
+		end
+	end)()
+	local Paragraph = Tab:CreateParagraph({Title = "Become a Heretic (BETA)", Content = "Attempts to turn you into a heretic but sometimes it bugs making you unable to use your keybinds, if that happens just self ressurect and retry until it works. (A FREE SIPHONER WITCH MUST BE OPEN TO DO THIS AND YOU HAVE TO BE THE WITCH SPECIES ALSO WHILE TRANSITIONING YOU MUST FEED ON SOMEONE OR A BLOOD BAG NOT 'Specialty' Drink BECAUSE IT WONT WORK)"})
+	local Button = Tab:CreateButton({
+		Name = "Become a Heretic (BETA)",
+		Callback = function()
+			local ReplicatedStorage = game:GetService("ReplicatedStorage")
+			local Players = game:GetService("Players")
+			local Player = Players.LocalPlayer
+			local Character
+			if not IsCharTaken("Lizzie Saltzman") or not IsCharTaken("Josie Saltzman") or not IsCharTaken("Kai Parker") then
+				Character = Player.Character
+				local OldFrame = Character.PrimaryPart.CFrame
+				local Char1
+				local Char2
+				local Char3
+				local Outfit1
+				local Outfit2
+				local Outfit3
+				local OldChar = Player.CharacterConfiguration.CharacterName.Value
+				local OldOutfit = CurrentOutfit
+				if not IsCharTaken("Josie Saltzman") then Char1 = "Josie Saltzman" else Char1 = false; if not IsCharTaken("Lizzie Saltzman") then Char2 = "Lizzie Saltzman" else Char2 = false; if not IsCharTaken("Kai Parker") then Char3 = "Kai Parker" end end end
+				if not IsCharTaken("Josie Saltzman") then Outfit1 = "Classic Josie" else Outfit1 = false; if not IsCharTaken("Lizzie Saltzman") then Outfit2 = "Classic Lizzie" else Outfit2 = false; if not IsCharTaken("Kai Parker") then Outfit3 = "Classic Kai" end end end
+				ReplicatedStorage:WaitForChild("Events"):WaitForChild("PlayerDeath"):FireServer(unpack({
+					[1] = {
+						["Option"] = "respawn",
+						["Approved"] = true
+					}
+				}))
+				repeat task.wait() until Player.PlayerGui:FindFirstChild("Menu")
+				Player.PlayerGui:FindFirstChild("Menu"):Destroy()
+				ReplicatedStorage:WaitForChild("Events"):WaitForChild("SpawnAsCharacter"):FireServer(unpack({
+					[1] = {
+						["CharName"] = Char1 or Char2 or Char3,
+						["Outfit"] = Outfit1 or Outfit2 or Outfit3
+					}
+				}))
+				workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+				Character = Player.Character
+				repeat task.wait() until Character:FindFirstChild("HumanoidRootPart")
+				Character.PrimaryPart.CFrame = OldFrame
+				task.wait(1)
+				local Spawn = coroutine.wrap(function()
+					print(OldChar)
+					print(OldOutfit)
+					ReplicatedStorage:WaitForChild("Events"):WaitForChild("SpawnAsCharacter"):FireServer(unpack({
+						[1] = {
+							["CharName"] = OldChar,
+							["Outfit"] = OldOutfit
+						}
+					}))
+				end)
+				ReplicatedStorage:WaitForChild("Events"):WaitForChild("PlayerDeath"):FireServer(unpack({
+					[1] = {
+						["IsCustom"] = false,
+						["Transition"] = true,
+						["Resurrect"] = true,
+						["Approved"] = true,
+						["Option"] = "revive",
+						["Tribrid"] = false
+					}
+				}))
+				local oldtick = tick()
+				repeat task.wait() until Player.PlayerGui:FindFirstChild("Menu") or tick() >= oldtick+10
+				Spawn()
+				task.wait(2)
+				game:GetService("UserInputService").MouseIconEnabled = true
+			else
+				Rayfield:Notify({
+					Title = "Notification",
+					Content = "No siphoners are open, please try again later!",
+					Duration = 5,
+					Image = 11401835376,
+					Actions = { -- Notification Buttons
+
+						Ignore = { -- Duplicate this table (or remove it) to add and remove buttons to the notification.
+							Name = "Close",
+							Callback = function()
+							end
+						},
+
+					},
+				})
+				SelfNotification("")
+			end
+		end,
+	})
+end
